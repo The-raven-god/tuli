@@ -1,0 +1,68 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emoji Bubbles</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background-color: #282c34;
+        }
+
+        .bubble {
+            position: absolute;
+            color: white;
+            font-size: 2rem;
+            animation: float 5s infinite;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) scale(0.5);
+                opacity: 0;
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) scale(1);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <script>
+        // Lista de emojis personalizados
+        const emojis = ['😄', '😎', '🥳', '🔥', '🎉', '🌈', '🍀', '🐱', '🚀'];
+
+        // Función para crear una burbuja de emoji
+        function createEmojiBubble() {
+            const bubble = document.createElement('div');
+            bubble.classList.add('bubble');
+
+            // Elegir un emoji al azar de la lista
+            const randomEmoji = emojis[Math.floor(Math.random() * emojis.length)];
+            bubble.textContent = randomEmoji;
+
+            // Posicionar la burbuja de forma aleatoria
+            bubble.style.left = Math.random() * 100 + 'vw';
+            bubble.style.top = Math.random() * 100 + 'vh';
+
+            // Añadir la burbuja al cuerpo del documento
+            document.body.appendChild(bubble);
+
+            // Eliminar la burbuja después de 5 segundos
+            setTimeout(() => {
+                bubble.remove();
+            }, 5000);
+        }
+
+        // Crear una burbuja de emoji cada 500ms
+        setInterval(createEmojiBubble, 500);
+    </script>
+</body>
+</html>
